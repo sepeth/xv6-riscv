@@ -93,5 +93,12 @@ sys_uptime(void)
 uint64
 sys_time(void)
 {
+  // No need to do this, the below reads 8 bytes in one go, since RISC-V is little-endian,
+  // it should be the same
+  // uint32* low = (uint32*)RTC;
+  // uint64* high = (uint64*)((uint32*)RTC+1);
+  // // printf("low: %p  -   high: %p\n", low, high);
+  // return (*high << 32) | *low;
+
   return *(uint64*)RTC;
 }
